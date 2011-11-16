@@ -1,0 +1,167 @@
+<!--
+ Demoiselle Framework
+ Copyright (C) 2010 SERPRO
+ ============================================================================
+ This file is part of Demoiselle Framework.
+ 
+ Demoiselle Framework is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public License version 3
+ as published by the Free Software Foundation.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License version 3
+ along with this program; if not,  see <http://www.gnu.org/licenses />
+ or write to the Free Software Foundation, Inc., 51 Franklin Street,
+ Fifth Floor, Boston, MA  02110-1301, USA.
+ ============================================================================
+ Este arquivo é parte do Framework Demoiselle.
+ 
+ O Framework Demoiselle é um software livre; você pode redistribuí-lo e/ou
+ modificá-lo dentro dos termos da GNU LGPL versão 3 como publicada pela Fundação
+ do Software Livre (FSF).
+ 
+ Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA
+ GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou
+ APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU/LGPL em português
+ para maiores detalhes.
+ 
+ Você deve ter recebido uma cópia da GNU LGPL versão 3, sob o título
+ "LICENCA.txt", junto com esse programa. Se não, acesse <http://www.gnu.org/licenses />
+ ou escreva para a Fundação do Software Livre (FSF) Inc.,
+ 51 Franklin St, Fifth Floor, Boston, MA 02111-1301, USA.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>demoiselle-vaadin</artifactId>
+	<version>2.2.2-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Vaadin Component</name>
+	<description>An auxiliary component useful to help developers build Vaadin interfaces integrated with Demoiselle.</description>
+
+	<parent>
+		<groupId>br.gov.frameworkdemoiselle.component</groupId>
+		<artifactId>demoiselle-component-parent</artifactId>
+		<version>2.0.7</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<properties>
+		<category>Visão</category>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.vaadin.addons.lazyquerycontainer</groupId>
+			<artifactId>vaadin-lazyquerycontainer</artifactId>
+			<version>1.2.9</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.vaadin</groupId>
+					<artifactId>vaadin</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>refresher</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin</artifactId>
+			<version>6.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>confirmdialog</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>collectioncontainer</artifactId>
+			<version>0.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin.addon</groupId>
+			<artifactId>beanvalidation-addon</artifactId>
+			<version>0.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>easyuploads</artifactId>
+			<version>0.4.9</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>br.gov.frameworkdemoiselle</groupId>
+			<artifactId>demoiselle-core</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>wagon-maven-plugin</artifactId>
+				<version>${wagon-maven-plugin}</version>
+				<executions>
+					<execution>
+						<id>upload-portal-info</id>
+						<phase>site-deploy</phase>
+						<goals>
+							<goal>upload</goal>
+						</goals>
+						<configuration>
+							<serverId>demoiselle.sourceforge.net</serverId>
+							<fromDir>${basedir}/target/site/portal</fromDir>
+							<url>${site.shell.url}/${project.artifactId}</url>
+							<toDir />
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<scm>
+		<connection>scm:svn:http://demoiselle.svn.sourceforge.net/svnroot/demoiselle/component/trunk/demoiselle-vaadin</connection>
+		<developerConnection>scm:svn:https://demoiselle.svn.sourceforge.net/svnroot/demoiselle/component/trunk/demoiselle-vaadin</developerConnection>
+		<url>scm:svn:http://demoiselle.svn.sourceforge.net/viewvc/demoiselle/component/trunk/demoiselle-vaadin</url>
+	</scm>
+
+	<distributionManagement>
+		<site>
+			<id>demoiselle.sourceforge.net</id>
+			<url>${site.shell.url}/${project.artifactId}/${project.version}</url>
+		</site>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>demoiselle.sourceforge.net</id>
+			<url>http://demoiselle.sourceforge.net/repository/release</url>
+		</repository>
+		<repository>
+			<id>demoiselle.sourceforge.net-snapshot</id>
+			<url>http://demoiselle.sourceforge.net/repository/snapshot</url>
+		</repository>
+		<repository>
+			<id>vaadin-addons</id>
+			<url>http://maven.vaadin.com/vaadin-addons</url>
+		</repository>
+	</repositories>
+
+</project>
