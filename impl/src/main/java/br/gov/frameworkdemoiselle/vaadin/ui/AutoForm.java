@@ -100,8 +100,8 @@ public class AutoForm<E> extends BeanValidationForm<E> implements FormFieldFacto
 		String prompt = "";
 
 		if (item instanceof BeanItem<?>) {
-			Object object = ((BeanItem<E>) item).getBean();
-			java.lang.reflect.Field objectField = getField((String) propertyId, object);
+			Class<E> clazz = (Class<E>)((BeanItem<E>) item).getBean().getClass();
+			java.lang.reflect.Field objectField = getField((String) propertyId, clazz);
 
 			if (objectField.isAnnotationPresent(br.gov.frameworkdemoiselle.vaadin.annotation.Field.class)) {
 				caption = objectField.getAnnotation(br.gov.frameworkdemoiselle.vaadin.annotation.Field.class).label();
@@ -133,18 +133,21 @@ public class AutoForm<E> extends BeanValidationForm<E> implements FormFieldFacto
 	 * Verifies if the field exists in the object. If exists, return it. If not, throws an exception.
 	 * 
 	 * @param propertyId Field to be found.
-	 * @param object Object
+	 * @param clazz Class
 	 * @return Found field.
 	 */
-	private java.lang.reflect.Field getField(String propertyId, Object object) {
+	private java.lang.reflect.Field getField(String propertyId, Class<?> clazz) {
 		try {
-			return object.getClass().getDeclaredField((String) propertyId);
+			return clazz.getDeclaredField((String) propertyId);
 		} catch (SecurityException e) {
 			throw new RuntimeException("AutomaticForm error: Can't access field " + propertyId + " in class "
-					+ object.getClass().getName(), e);
+					+ clazz.getName(), e);
 		} catch (NoSuchFieldException e) {
+			if(clazz.getSuperclass() != null){
+				return getField(propertyId, clazz.getSuperclass());
+			}
 			throw new RuntimeException("AutomaticForm error: Can't find field " + propertyId + " in class "
-					+ object.getClass().getName(), e);
+					+ clazz.getName(), e);
 		}
 	}
 
