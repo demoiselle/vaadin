@@ -59,7 +59,8 @@
 
 	<modules>
 		<module>impl</module>
-<!-- 		<module>documentation</module> -->
+		<module>archetype</module>
+		<module>documentation</module>
 	</modules>
 
 	<build>
