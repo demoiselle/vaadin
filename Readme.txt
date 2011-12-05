@@ -38,4 +38,4 @@
 
 Sobre o Demoiselle Vaadin
 
-  O componente Demoiselle Vaadin tem como principal objetivo auxiliar na utilização da tecnologia Vaadin como camada de apresentação da sua aplicação.
+  Componente que auxilia a utilização do Vaadin com o Demoiselle.
