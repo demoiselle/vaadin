@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding="utf-8"?>
+<!DOCTYPE part PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" []>
+<part id="vaadin-master">
+
+	<title>Demoiselle Vaadin</title>
+
+	<partintro>
+		<para>
+			O <emphasis>Vaadin</emphasis> é um framework para construção de interfaces web que aplica ideias inovadoras. Apesar de usar o <emphasis>GWT</emphasis> como 
+			mecanismo para a exibição de seus componentes, eles tem características que os diferenciam. No Vaadin, 
+			assim como no GWT, a construção da interface ocorre de forma bem semelhante ao modelo já conhecido no Swing/SWT: 
+			através da composição de diversos componentes e usando apenas código Java. Nada mais!
+		</para>
+		<para>
+			O Vaadin não sofre de dois problemas comuns para os desenvolvedores que usam o GWT. O primeiro é a grande quantidade 
+			de classes de comunicação remota	que precisamos criar. O segundo problema é a limitação no uso de bibliotecas externas 
+			na criação da interface, pois todo código Java da parte cliente é traduzido para Javascript. Com o Vaadin, todos os componentes
+			possuem seu ciclo de vida no servidor e não no browser, o que elimina esta deficiência.
+		</para>
+		<para>
+			O objetivo deste componente é permitir o uso desta tecnologia com o <emphasis>Demoiselle</emphasis>, possibilitando o uso de Injeção de Dependência, 
+			além das demais funcionalidades já conhecidas do framework. Também são fornecidas funcionalidades extras que facilitam a 
+			criação de aplicações, voltadas a padrões de mercado bastante conhecidos.
+		</para>
+	</partintro>
+	
+	<!-- capítulos -->
+	<xi:include href="projeto.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+	<xi:include href="anotacoes.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+	<xi:include href="avancado.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+	
+</part>

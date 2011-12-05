@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding="utf-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" []>
+<chapter id="vaadin-projeto">
+
+	<title>Vaadin em um Projeto</title>
+
+	<section>
+		<title>Criando um Projeto com Vaadin</title>
+		<para>
+			A construção de uma aplicação com Vaadin diferencia-se bastante de uma construída em JSF. Aqui não temos páginas XHTML 
+			com tags que definem os componentes de tela. Ao contrário disto, temos apenas código Java. Portanto, não espere encontrar 
+			qualquer arquivo com extensão XHTML, JSP ou HTML em um projeto Vaadin.
+		</para>
+		<para>
+			Tudo é feito com código puramente Java. Isto mesmo. Toda a tela é construída de forma semelhante a como é feito em Swing: 
+			criando painéis, janelas e agrupando componentes. Para facilitar o uso do Vaadin com o Demoiselle, o componente sugere uma estrutura 
+			padrão em seus arquétipos, muito parecida com a estrutura encontrada em aplicações JSF. Nesta seção, vamos discutir os principais 
+			aspectos que você pode se deparar ao tentar criar sua primeira aplicação Vaadin com o Demoiselle.
+		</para>
+		<para>
+			O primeiro passo na criação de uma aplicação é criar uma classe e colocá-la para estender de 
+			br.gov.frameworkdemoiselle.template.VaadinApplication. Seu arquivo web.xml também deve referenciar esta classe, 
+			conforme o exemplo abaixo:
+		</para>
+		<programlisting role="XML"><![CDATA[<web-app>
+	<display-name>Bookmark</display-name>
+	<servlet>
+		<servlet-name>Bookmark</servlet-name>
+		<servlet-class>
+			br.gov.frameworkdemoiselle.servlet.VaadinApplicationServlet
+		</servlet-class>
+		<init-param>
+			<param-name>application</param-name>
+    		<param-value>com.suaempresa.Aplicacao</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Bookmark</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>	
+</web-app>]]></programlisting>
+		<para>
+			Relembramos que a melhor forma de ter uma aplicação Vaadin com Demoiselle pronta para o uso, é adotar o nosso arquétipo demoiselle-vaadin-jpa. 
+			Este arquétipo já lhe fornece todas estas configurações, basta a você escrever o código da aplicação. Segue abaixo um exemplo de classe que estende de VaadinApplication.
+		</para>
+		<programlisting role="JAVA"><![CDATA[@SessionScoped
+public class Application extends VaadinApplication {
+
+	@Inject 
+	ResourceBundle bundle;
+
+	@Inject
+	private MainPresenter mainPresenter;
+
+	private Window mainWindow;
+
+	public void init() {
+		mainWindow = new Window(bundle.getString("login.titulo"), mainPresenter.getView());
+		setMainWindow(mainWindow);
+	}
+}]]></programlisting>
+	</section>
+	
+	<section>
+		<title>Estrutura do Projeto</title>
+		<para>
+			A estrutura de pacotes de um projeto Vaadin não é muito diferente daquela de um projeto com JSF. 
+			Contudo, aqui não temos páginas com tags. Ao contrário disto, temos apenas classes Java que definem 
+			o layout e o comportamento de suas telas.
+		</para>
+		<para>
+			Uma vez que toda a tela é construída com código Java, precisamos de um pacote na nossa estrutura 
+			para armazenar estas classes. O componente sugere a criação do pacote com.seuprojeto.ui.view para isto. 
+			Também é sugerida a criação do pacote com.seuprojeto.ui.presenter, para o armazenamento das classes 
+			controladores da View, conforme o padrão MVP, que discutiremos logo a seguir. Observe que os demais 
+			pacotes seguem a estrutura padrão de projetos Demoiselle.
+		</para>
+	</section>
+	
+	<section>
+		<title>Model View Presenter</title>
+		<para>
+			O componente Vaadin não prende o desenvolvedor a um determinado padrão ou modelo de desenvolvimento, entretanto, 
+			sugere uma estruturação de seu projeto, visando melhor legibilidade e facilidade nas futuras manutenções. 
+			O padrão sugerido pelo componente é o Model View Presenter (MVP). Neste sentido, algumas classes, anotações e 
+			mecanismos foram criados visando facilitar a aplicação deste padrão. 
+		</para>
+		<para>
+			Este padrão é bastante semelhante ao já conhecido Model View Controller (MVC), contudo, existem algumas diferenças. 
+			O importante é entender que você deve separar suas classes que possuem a lógica de apresentação, daquelas que são 
+			responsáveis em tratar a interação do usuário e respostas a estas interações. A primeira é chamada de View, enquanto 
+			a segunda é conhecida como Presenter.
+		</para>
+		<para>
+			Um exemplo rápido da utilização deste padrão, seria uma tela na qual existe apenas um botão que quando clicado exibe 
+			uma mensagem em um Label. O botão e o label estariam na classe de View. Quando o usuário clica no botão, 
+			o Presenter captura este evento e informa para a View exibir a mensagem para o usuário.
+		</para>
+	</section>
+	
+</chapter>

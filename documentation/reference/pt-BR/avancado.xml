@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding="utf-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" []>
+<chapter id="vaadin-avancado">
+
+	<title>Tópicos Avançados do Vaadin</title>
+	
+	<section>
+		<title>Eventos</title>
+		<para>
+			Conforme discutido na seção que trata o padrão MVP, as classes de View não deveriam tratar diretamente os eventos de interesse do usuário. 
+			Por exemplo, quando o usuário clica em um botão “Salvar”, não deve ser responsabilidade da View chamar a classe de BusinessController diretamente. 
+			Esta tarefa cabe ao Presenter. É ele que deve tratar este evento de clique do botão, salvar os dados chamando o BusinessController e depois solicitar 
+			à View que seja exibida uma mensagem de sucesso para o usuário.
+		</para>
+		<para>
+			Então, como deve ocorrer a comunicação entre View e Presenter? Como o Presenter captura os eventos do usuário com a View? Existem diversas formas. 
+			É possível ter uma instância do Presenter dentro da View e fazer uma chamda direta. Ou, de uma forma mais desacoplada, a View pode lançar eventos 
+			que serão capturados por algum Presenter. E é neste ponto onde o mecanismo padrão de tratamento de eventos do CDI/Weld auxilia substancialmente. 
+			O componente faz forte uso deste mecanismo e já fornece alguns eventos bastante comuns para operações de CRUD.
+		</para>
+		<para>
+			Caso a classe de Presenter tenha interesse em saber quando uma determinada View é inicializada pela primeira vez, basta ter um método com a seguinte assinatura:
+		</para>
+			<programlisting role="JAVA"><![CDATA[public void afterViewInitialization(@Observes @AfterViewInitialization MinhaView view) { }]]></programlisting>
+			<para>
+				A anotação <literal>@Observes</literal> é do CDI e informa que este método está observando eventos qualificados com <literal>AfterViewInitialization</literal> e que lançam o objeto <literal>MinhaView</literal>. 
+				De forma simples, sempre que uma <literal>View</literal> do tipo <literal>MinhaView</literal> for inicializada, este evento será lançado e o Presenter que tiver um método com a assinatura acima será chamado.
+			</para>
+			<para>
+				O componente Vaadin fornece diversos outros qualificadores de evento, como: <literal>AfterViewRepainted, BeforeNavigateToView, ProcessClear, ProcessDelete, ProcessInvalidValue, 
+				ProcessItemSelection, ProcessMenuSelection e ProcessSave</literal>. Muitas delas tratam eventos específicos de CRUD. A anotação <literal>ProcessSave</literal>, por exemplo, é lançada quando 
+				ocorre um clique em um botão de Salvar.
+			</para>
+	</section>
+	
+	<section>
+		<title>Criando Classes de View</title>
+		<para>
+			Classes de visão são responsáveis pela criação de telas, através da composição de componentes que são fornecidos pelo Vaadin. O componente do Demoiselle fornece 
+			algumas classes abstratas que podem ser estendidas. Desta forma, sua classe já herdará alguns comportamentos que facilitarão a utilização do padrão MVP.
+		</para>
+		<para>
+			A classe mais simples é a <literal>BaseVaadinView</literal>. Estendendo esta classe, alguns eventos já serão lançados por padrão. Por exemplo, logo após a View ser inicializada, 
+			o evento <literal>AfterViewInitialization</literal> será lançado. Outra classe disponível é a <literal>AbstractCrudView</literal>. Como seu nome sugere, esta classe já fornece o comportamento padrão 
+			para tratar telas de CRUD. Esta classe já fornece dois componentes, por padrão: um <literal>Table</literal> e um <literal>CrudForm</literal>. Contudo, o posicionamento destes componentes na 
+			tela deve ser feito pelo próprio programador.
+		</para>
+		<para>
+			Uma vez estendida, o método <literal>initializeComponent()</literal> deve ser sobrescrito e usado para a criação dos componentes da interface. Caso a classe estendida seja <literal>AbstractCrudView</literal>, 
+			é neste momento que os componentes <literal>Table</literal> e <literal>CrudForm</literal> devem ser posicionados. Outros elementos podem ser adicionados, conforme a necessidade. 
+			Dentro de qualquer <literal>View</literal> o mecanismo de injeção de dependência está ativado por padrão. Desta forma, é possível injetar, por exemplo, o <literal>ResourceBundle</literal> 
+			para tratar a internacionalização de sua aplicação. É necessário também que sua classe de View seja anotada com <literal>@View</literal>. 
+			Trata-se de um qualificador que tem significado especial para o Demoiselle.
+		</para>
+	</section>
+	
+	<section>
+		<title>Criando Classes de Presenter</title>
+		<para>
+			Uma vez criada a classe de <literal>View</literal>, cabe agora criar a classe de <literal>Presenter</literal> que é responsável por ela. No padrão MVP, normalmente, 
+			existe o relacionamento de um para um entre <literal>View</literal> e <literal>Presenter</literal>. Uma classe de Presenter típica é demonstrada no exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[@Presenter
+public class MainPresenter extends AbstractPresenter<MainView> {
+}]]></programlisting>
+		<para>
+			É importante estereotipar sua classe com a anotação <literal>@Presenter</literal>. Ela possui significado especial para o Demoiselle. Após isto, é possível estender a 
+			classe <literal>AbstractPresenter</literal> e herdar alguns comportamentos que facilitarão a aplicação do padrão MVP. A partir daqui, pode-se ter este <literal>Presenter</literal> 
+			capturando os eventos lançados por <literal>MainView</literal>. Não há nenhum método a ser sobrescrito, como pode ser observado. 
+			Outra opção é estender a classe <literal>AbstractCrudPresenter</literal>, que já fornece operações de CRUD. O exemplo abaixo exemplifica seu uso.
+		</para>
+		<programlisting role="JAVA"><![CDATA[@Presenter
+public class ClubePresenter extends AbstractCrudPresenter<ClubeView, Clube, Long, ClubeBC> {
+
+	public void processSave(@Observes @ProcessSave Clube clube) {
+		doSave(clube);
+	}
+	
+}]]></programlisting>
+		<para>
+			Podemos observar que são necessários alguns parâmetros extras. Primeiro, informamos qual <literal>View (ClubeView)</literal>, depois qual a entidade que será tratada por este <literal>Presenter(Clube)</literal>. 
+			Em seguida, é preciso informar o tipo do identificador da entidade, neste caso, <literal>Long</literal>. Por último, qual a classe de <literal>BusinessController</literal> para esta entidade (ClubeBC). 
+			Agora, é possível capturar os eventos de CRUD e repassar para métodos da classe-pai, como <literal>doSave()</literal>, <literal>doDelete()</literal> e etc.
+		</para>
+	</section>
+	
+	<section>
+		<title>Novos Componentes</title>
+		<para>
+			O componente Vaadin fornece um componente chamado <literal>CrudForm</literal>. Este componente é, basicamente, uma extensão da classe <literal>Form</literal> do Vaadin, mas que adiciona 
+			comportamentos de CRUD. Por padrão, este <literal>Form</literal> já terá três botões. Além disto, estes botões já lançarão automaticamente os eventos <literal>ProcessSave</literal>, 
+			<literal>ProcessDelete</literal> e <literal>ProcessClear</literal>. Ao usar <literal>CrudForm</literal>, as anotações de atributos, já discutidas, 
+			serão usadas para construir automaticamente alguns campos relacionados aos atributos.
+		</para>
+		<para>
+			O <literal>CrudForm</literal> é capaz de construir automaticamente os campos, pois ele estende de <literal>AutoForm</literal>. Esta classe é que, de fato, trata as anotações colocadas nos atributos 
+			da entidade e transforma em campos equivalentes.
+		</para>
+	</section>
+	
+	<section>
+		<title>Paginação</title>
+		<para>
+			A paginação também foi lembrada neste componente. Contudo, você verá uma paginação um pouco diferente daquela que normalmente vemos em aplicações web. 
+			Não teremos links para páginas ou setas para clicar. Toda a paginação é transparente, feita on-demand. Conforme a barra de rolagem sobe ou desce, a paginação ocorre automaticamente. 
+		</para>
+		<para>
+			Para ter disponível o recurso de paginação nativo do Demoiselle com o Vaadin, basta usar a classe <literal>PagedContainer</literal> e seu método <literal>create()</literal>, que recebe dois parâmetros. 
+			O primeiro é a classe do tipo do bean que será paginado. O segundo parâmetro é uma instância da interface <literal>ResultListHandler</literal>. 
+			Desta interface, deve ser implementado o método <literal>handleResultList()</literal>. Ele será chamado sempre que o objeto <literal>Table</literal> necessitar de uma nova consulta no banco para obter dados.
+		</para>
+	</section>
+	
+</chapter>

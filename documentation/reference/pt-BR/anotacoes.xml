@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding="utf-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" []>
+<chapter id="vaadin-anotacoes">
+
+	<title>Anotações do Vaadin</title>
+
+	<para>
+		Para facilitar a criação de interfaces, o componente fornece algumas anotações que podem ser usadas nas classes de domínio da aplicação. 
+		Uma vez que um campo de sua classe é anotado, o componente pode usar esta informação para criar automaticamente um componente 
+		correspondente na tela. Suas classes de domínio, caso você tenha criado seu projeto a partir de um arquétipo Demoiselle, 
+		estarão no pacote com.suaempresa.domain. A principal anotação é a @Field. Com ela, você informa ao Demoiselle que este campo 
+		refere-se a um componente de tela. Veja um exemplo de utilização abaixo, retirado do arquétipo demoiselle-vaadin.jpa.
+	</para>
+	<programlisting role="JAVA"><![CDATA[@Entity
+public class Bookmark implements Serializable {
+
+	@Column
+	@Field(prompt = "{bookmark.prompt.description}", label = "{bookmark.label.description}")
+	private String description;
+
+}]]></programlisting>
+	<para>
+		Neste exemplo, estamos informando para o componente que o campo description, da entidade Bookmark, deve ser associado 
+		a um componente de tela. Os parâmetros label e prompt desta anotação informam, respectivamente, qual será o label do 
+		campo na tela e qual a mensagem descritiva do campo(prompt). Por padrão, este campo será exibido como uma caixa de 
+		texto comum, pois trata-se de uma String. Caso seja necessário personalizar, será necessário usar outras anotações, que 
+		discutiremos agora.
+	</para>
+	<note>
+		<para>
+			Observe que os valores para prompt e label estão entre chaves. Isto informa que não se trata de um valor literal, mas uma 
+			chave que deve ser usada para obter o valor real em um arquivo de resource, como o messages.properties.
+		</para>
+	</note>
+	
+	<section>
+		<title>@TextField</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe deve ser exibido como uma caixa de texto comum. Veja um exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+
+	@Column
+	@TextField
+	@Field(prompt = "{bookmark.prompt.description}", label = "{bookmark.label.description}")
+	private String description;
+
+}]]></programlisting>
+	</section>
+	<section>
+		<title>@CheckBox</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe deve ser exibido como uma caixa de seleção, 
+			comumente conhecida como CheckBox. É importante que o campo anotado seja do tipo Boolean. Veja um exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+			
+	@CheckBox
+	@Field(prompt = "{bookmark.prompt.visited}", label = "{bookmark.label.visited}")
+	private boolean visited;
+	
+}]]></programlisting>
+	</section>
+	<section>
+		<title>@ComboBox</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe deve ser exibido como uma lista de seleção, 
+			comumente conhecida como ComboBox ou SelectList. Esta anotação é muito usada quando o campo se refere 
+			a um relacionamento entre entidades. Veja um exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+			
+	@ManyToOne
+	@ComboBox(fieldLabel = "description")
+	@Field(prompt = "{bookmark.prompt.category}", label = "{bookmark.label.category}")
+	private Category category;
+	
+}]]></programlisting>
+		<para>
+			O parâmetro <literal>fieldLabel</literal> informa qual atributo da entidade <literal>Category</literal> será usado para exibir como descritivo do componente. 
+			Caso este parâmetr não seja usado, você deve sobrescrever o método <literal>toString()</literal>.
+		</para>
+	</section>
+	<section>
+		<title>@CpfField</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe deve ser exibido como uma caixa de texto comum, entretanto, 
+			com uma formatação de CPF (Cadastro de Pessoa Física). Veja um exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+
+	@Column
+	@Field(prompt = "CPF", label = "CPF")
+	@CpfField
+	private String cpf;
+	
+}]]></programlisting>
+	</section>
+	<section>
+		<title>@DateField</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe deve ser exibido como um campo de data, no qual 
+			um calendário será exibido para selecionar um valor. Veja um exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+
+	@Field(prompt = "{bookmark.prompt.data}", label = "{bookmark.label.data}")
+	@DateField(format="dd/MM/yyyy")
+	private Date data;
+	
+}]]></programlisting>
+		<para>
+			É importante que o atributo seja do tipo java.util.Date. O parâmetro format informa como a data deve ser exibida, quando selecionada.
+		</para>
+	</section>
+	<section>
+		<title>@FileField</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe terá como conteúdo o valor binário de um determinado arquivo 
+			que será enviado pelo usuário. Será exibido na tela um campo de Upload de arquivos e seu conteúdo será gravado neste atributo. 
+			É importante que o atributo seja um array de bytes. Veja um exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+			
+	@Lob
+	@Basic(fetch=FetchType.LAZY)
+	@FileField
+	@Field(prompt = "{clube.prompt.escudo}", label = "{clube.label.escudo}")
+	private byte[] escudo;
+	
+}]]></programlisting>
+	</section>
+	<section>
+		<title>@FormattedField</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe deve ser exibido como uma caixa de texto comum, entretanto, 
+			com uma formatação específica, informada através do parâmetro format. Veja um exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+			
+	@Column
+	@Field(prompt = "Formatado", label = "Formatado")
+	@FormattedField(format = "999.999.999-99", straight = true)
+	private String formatado;
+	
+}]]></programlisting>
+	</section>
+	<section>
+		<title>@OptionGroup</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe deve ser exibido como uma lista de botões de seleção única, 
+			comumente conhecida como RadioButton. Esta anotação é muito usada quando o campo se refere a um relacionamento entre entidades. 
+			Veja um exemplo abaixo.			
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+			
+	@ManyToOne
+	@OptionGroup(fieldLabel = "description")
+	@Field(prompt = "{bookmark.prompt.category}", label = "{bookmark.label.category}")
+	private Category category;
+	
+}]]></programlisting>
+		<para>
+			O parâmetro <literal>fieldLabel</literal> informa qual atributo da entidade <literal>Category</literal> será usado para exibir como 
+			descritivo do componente. Caso este parâmetr não seja usado, você deve sobrescrever o método <literal>toString()</literal>.
+		</para>
+	</section>
+	<section>
+		<title>@PasswordField</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe deve ser exibido como uma caixa de texto para que sejam 
+			informados valores secretos, como senhas. Veja um exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+			
+	@Column
+	@Field(prompt = "Senha", label = "Senha")
+	@PasswordField
+	private String senha;
+	
+}]]></programlisting>
+	</section>
+	<section>
+		<title>@PhoneField</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe deve ser exibido como uma caixa de texto comum, entretanto, 
+			com uma formatação de Telefone (9999-9999). Veja um exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+			
+	@Column
+	@Field(prompt = "Telefone", label = "Telefone")
+	@PhoneField
+	private String phone;
+	
+}]]></programlisting>
+	</section>
+	<section>
+		<title>@RichText</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe deve ser exibido como uma caixa de texto especial, no qual será 
+			permitido incluir formatação de texto. Veja um exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+			
+	@Column
+	@Field(prompt = "Texto", label = "Texto")
+	@RichText
+	private String texto;
+	
+}]]></programlisting>
+	</section>
+	<section>
+		<title>@TextArea</title>
+		<para>
+			Usando esta anotação, você informa que um atributo da classe deve ser exibido como uma caixa de texto de múltiplas linhas, 
+			conhecida em HTML como TextArea. Veja um exemplo abaixo.
+		</para>
+		<programlisting role="JAVA"><![CDATA[public class Bookmark implements Serializable {
+			
+	@Column
+	@Field(prompt = "Texto", label = "Texto")
+	@TextArea
+	private String texto;
+	
+}]]></programlisting>
+		<para>
+			Nas seções seguintes veremos como o componente trata estas anotações para que os atributos sejam exibidos como componentes de interface.
+		</para>
+	</section>
+	
+</chapter>

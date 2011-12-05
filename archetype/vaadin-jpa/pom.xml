@@ -39,7 +39,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.gov.frameworkdemoiselle.archetypes</groupId>
-	<artifactId>demoiselle-vaadinjpa</artifactId>
+	<artifactId>demoiselle-vaadin-jpa</artifactId>
 	<packaging>jar</packaging>
 
 	<parent>
