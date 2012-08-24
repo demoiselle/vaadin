@@ -86,6 +86,12 @@
 		</site>
 	</distributionManagement>
 
+	<scm>
+		<connection>scm:git:git://github.com/demoiselle/${project.alias}.git</connection>
+		<developerConnection>scm:git:git://github.com/demoiselle/${project.alias}.git</developerConnection>
+		<url>scm:git:git://github.com/demoiselle/${project.alias}.git</url>
+	</scm>
+
 	<repositories>
 		<repository>
 			<id>demoiselle.sourceforge.net</id>
@@ -97,6 +103,6 @@
 	<properties>
 		<project.alias>vaadin</project.alias>
 		<category>Visão</category>
-		<project.nextVersion>2.2.2-SNAPSHOT</project.nextVersion>
+		<project.nextVersion>2.3.0-BETA2-SNAPSHOT</project.nextVersion>
 	</properties>
 </project>
