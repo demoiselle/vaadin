@@ -13,6 +13,7 @@ import br.gov.frameworkdemoiselle.vaadin.annotation.CheckBox;
 import br.gov.frameworkdemoiselle.vaadin.annotation.ComboBox;
 import br.gov.frameworkdemoiselle.vaadin.annotation.Field;
 import br.gov.frameworkdemoiselle.vaadin.annotation.TextField;
+import ${package}.domain.Category;
 
 @Entity
 public class Bookmark implements Serializable {
@@ -52,6 +53,12 @@ public class Bookmark implements Serializable {
 		this.link = link;
 	}
 
+	public Bookmark(String description, String link, Category category) {
+		this.description = description;
+		this.link = link;
+		this.category = category;
+	}
+	
 	public Long getId() {
 		return id;
 	}

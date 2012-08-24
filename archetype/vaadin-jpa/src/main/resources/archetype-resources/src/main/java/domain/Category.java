@@ -21,6 +21,13 @@ public class Category implements Serializable {
 	@NotNull(message="{message.error.category.description.notnull}")
 	private String description;
 
+	public Category() {
+	}
+	
+	public Category(String description) {
+		this.description = description;
+	}
+	
 	public Long getId() {
 		return id;
 	}

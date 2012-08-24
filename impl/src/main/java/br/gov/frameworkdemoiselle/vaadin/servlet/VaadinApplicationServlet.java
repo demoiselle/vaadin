@@ -44,7 +44,6 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import br.gov.frameworkdemoiselle.vaadin.internal.producer.VaadinLocaleProducer;
 import br.gov.frameworkdemoiselle.vaadin.template.VaadinApplication;
 
 import com.vaadin.Application;
@@ -83,7 +82,6 @@ public class VaadinApplicationServlet extends ApplicationServlet {
 
 	@Override
 	protected Application getNewApplication(HttpServletRequest request) throws ServletException {
-		VaadinLocaleProducer.locale = request.getLocale();
 		CreationalContext<VaadinApplication> context = beanManager.createCreationalContext(null);
 		VaadinApplication application = injectionTarget.produce(context);
 
