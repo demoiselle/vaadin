@@ -36,17 +36,42 @@
  */
 package br.gov.frameworkdemoiselle.vaadin.internal.bootstrap;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.spi.AfterBeanDiscovery;
+import javax.enterprise.inject.spi.AfterDeploymentValidation;
+import javax.enterprise.inject.spi.Extension;
 
 import br.gov.frameworkdemoiselle.annotation.ViewScoped;
-import br.gov.frameworkdemoiselle.internal.bootstrap.AbstractBootstrap;
+import br.gov.frameworkdemoiselle.internal.context.Contexts;
+import br.gov.frameworkdemoiselle.internal.context.CustomContext;
 import br.gov.frameworkdemoiselle.internal.context.ThreadLocalContext;
+import br.gov.frameworkdemoiselle.lifecycle.AfterShutdownProccess;
 
-public class VaadinBootstrap extends AbstractBootstrap {
+public class VaadinBootstrap implements Extension {
 
-	public void loadContext(@Observes final AfterBeanDiscovery event) {
-		addContext(new ThreadLocalContext(ViewScoped.class), event);
+	private List<CustomContext> tempContexts = new ArrayList<CustomContext>();
+
+	private AfterBeanDiscovery afterBeanDiscoveryEvent;
+
+	public void storeContexts(@Observes final AfterBeanDiscovery event) {
+		this.tempContexts.add(new ThreadLocalContext(ViewScoped.class));
+		this.afterBeanDiscoveryEvent = event;
+	}
+
+	public void addContexts(@Observes final AfterDeploymentValidation event) {
+		for (CustomContext tempContext : this.tempContexts) {
+			Contexts.add(tempContext, this.afterBeanDiscoveryEvent);
+		}
+	}
+
+	public void removeContexts(@Observes AfterShutdownProccess event) {
+		for (CustomContext tempContext : this.tempContexts) {
+			Contexts.remove(tempContext);
+		}
 	}
 
 }

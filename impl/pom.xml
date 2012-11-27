@@ -46,7 +46,7 @@
 	<parent>
 		<groupId>br.gov.frameworkdemoiselle</groupId>
 		<artifactId>demoiselle-parent</artifactId>
-		<version>5</version>
+		<version>8</version>
 		<relativePath>../../internal/parent/demoiselle/pom.xml</relativePath>
 	</parent>
 
@@ -61,6 +61,18 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>br.gov.frameworkdemoiselle</groupId>
+				<artifactId>demoiselle-framework-bom</artifactId>
+				<version>${demoiselle.framework.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -123,9 +135,12 @@
 
 	<repositories>
 		<repository>
-			<id>demoiselle.sourceforge.net</id>
-			<name>Demoiselle Maven Repository</name>
-			<url>http://demoiselle.sourceforge.net/repository/release</url>
+			<id>vaadin-addons</id>
+			<url>http://maven.vaadin.com/vaadin-addons</url>
 		</repository>
 	</repositories>
+
+	<properties>
+		<demoiselle.framework.version>2.3.0</demoiselle.framework.version>
+	</properties>
 </project>
