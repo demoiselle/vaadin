@@ -36,15 +36,16 @@
  */
 package ${package}.persistence;
 
-import static br.gov.frameworkdemoiselle.annotation.Startup.MAX_PRIORITY;
-import static br.gov.frameworkdemoiselle.annotation.Startup.MIN_PRIORITY;
+import static br.gov.frameworkdemoiselle.annotation.Priority.MAX_PRIORITY;
+import static br.gov.frameworkdemoiselle.annotation.Priority.MIN_PRIORITY;
 
 import javax.enterprise.context.ApplicationScoped;
 
 import org.hsqldb.Server;
 
-import br.gov.frameworkdemoiselle.annotation.Shutdown;
-import br.gov.frameworkdemoiselle.annotation.Startup;
+import br.gov.frameworkdemoiselle.annotation.Priority;
+import br.gov.frameworkdemoiselle.lifecycle.Shutdown;
+import br.gov.frameworkdemoiselle.lifecycle.Startup;
 
 @ApplicationScoped
 public class DatabaseServer {
@@ -59,12 +60,14 @@ public class DatabaseServer {
 		server.setSilent(true);
 	}
 
-	@Startup(priority = MAX_PRIORITY)
+	@Startup
+	@Priority(MAX_PRIORITY)
 	public void start() {
 		this.server.start();
 	}
 
-	@Shutdown(priority = MIN_PRIORITY)
+	@Shutdown
+	@Priority(MIN_PRIORITY)
 	public void stop() {
 		this.server.shutdown();
 	}
