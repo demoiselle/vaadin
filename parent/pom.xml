@@ -41,12 +41,12 @@
 	<groupId>br.gov.frameworkdemoiselle.component</groupId>
 	<artifactId>demoiselle-vaadin-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>2.3.0</version>
+	<version>2.3.1-SNAPSHOT</version>
 
 	<parent>
 		<groupId>br.gov.frameworkdemoiselle</groupId>
 		<artifactId>demoiselle-servlet-parent</artifactId>
-		<version>2.3.0</version>
+		<version>2.3.1-SNAPSHOT</version>
 	</parent>
 
 	<organization>
@@ -160,5 +160,4 @@
 			</releases>
 		</repository>
 	</repositories>
-
 </project>
