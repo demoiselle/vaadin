@@ -90,6 +90,6 @@ ou escreva para a Fundação do Software Livre (FSF) Inc.,
 	</repositories>
 
 	<properties>
-		<project.context>component/vaadin/reference</project.context>
+		<project.context>components/vaadin/reference</project.context>
 	</properties>
 </project>
