@@ -23,7 +23,7 @@ public class BookmarkBC extends DelegateCrud<Bookmark, Long, BookmarkDAO> {
 	@Inject
 	private MessageContext messageContext;
 	
-	@Startup
+	//@Startup
 	@Transactional
 	public void load() {
 		Category categoryDemoiselle = new Category("Demoiselle"); 
@@ -43,14 +43,14 @@ public class BookmarkBC extends DelegateCrud<Bookmark, Long, BookmarkDAO> {
 	}
 	
 	@Override
-	public void insert(Bookmark bean) {
+	public Bookmark insert(Bookmark bean) {
 		
 		// Dummy business logic.
 		if (bean.getDescription() != null && bean.getDescription().indexOf("Vaadin") > -1) {
 			throw new RuntimeException("'Vaadin' word is not allowed as description.");
 		}
 		
-		super.insert(bean);
+		return super.insert(bean);
 	}
 
 }

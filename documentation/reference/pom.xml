@@ -45,7 +45,7 @@ ou escreva para a Fundação do Software Livre (FSF) Inc.,
 	<parent>
 		<groupId>br.gov.frameworkdemoiselle</groupId>
 		<artifactId>demoiselle-documentation-parent</artifactId>
-		<version>8</version>
+		<version>9</version>
 		<relativePath>../../../internal/parent/documentation/pom.xml</relativePath>
 	</parent>
 

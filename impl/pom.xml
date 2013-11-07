@@ -153,6 +153,6 @@
 	</repositories>
 
 	<properties>
-		<demoiselle.framework.version>2.3.0</demoiselle.framework.version>
+		<demoiselle.framework.version>2.4.0</demoiselle.framework.version>
 	</properties>
 </project>
