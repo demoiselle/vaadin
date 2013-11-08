@@ -40,13 +40,13 @@
 
 	<groupId>br.gov.frameworkdemoiselle.component</groupId>
 	<artifactId>demoiselle-vaadin-build</artifactId>
-	<version>2.3.1-SNAPSHOT</version>
+	<version>2.4.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>br.gov.frameworkdemoiselle</groupId>
 		<artifactId>demoiselle-component-build-parent</artifactId>
-		<version>8</version>
+		<version>9</version>
 		<relativePath>../internal/parent/build/component/pom.xml</relativePath>
 	</parent>
 
@@ -121,6 +121,6 @@
 	<properties>
 		<project.alias>vaadin</project.alias>
 		<category>Visão</category>
-		<project.nextVersion>2.3.1-SNAPSHOT</project.nextVersion>
+		<project.nextVersion>2.4.1-SNAPSHOT</project.nextVersion>
 	</properties>
 </project>
