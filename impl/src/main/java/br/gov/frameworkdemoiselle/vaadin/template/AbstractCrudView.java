@@ -50,8 +50,8 @@ import br.gov.frameworkdemoiselle.vaadin.ui.ResultListHandler;
  * View implementation that defines a default behavior for CRUD operations.
  * 
  * @author Marlon
- *
- * @param <E> Domain class that will receive the CRUD operations.
+ * @param <E>
+ *            Domain class that will receive the CRUD operations.
  */
 public abstract class AbstractCrudView<E> extends BaseVaadinView implements CrudView<E> {
 

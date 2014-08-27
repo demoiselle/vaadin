@@ -99,7 +99,7 @@ public abstract class VaadinApplication extends Application implements Serializa
 		if (getCallDefaultTerminalErrorImpl())
 			super.terminalError(event);
 	}
-	
+
 	public void reloadApp() {
 		getMainWindow().executeJavaScript("window.location.href=window.location.href;");
 	}

@@ -47,26 +47,26 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Any field marked with this annotation will be shown as a <strong>TextField</strong> component.<br>
- * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation.
+ * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation. Usage example: <br>
  * 
- * Usage example: <br>
- * <example>
+ * <pre>
  * class MyDomainClass {
  * 
- * 	  @FormattedField(format = "9999999-D", straight = false)
- * 	  @Field(prompt='', label='')
+ * 	  &#064;FormattedField(format = "9999999-D", straight = false)
+ * 	  &#064;Field(prompt='', label='')
  * 	  private AnotherDomainClass domainClass;
  *    
  * }
- * </example>
+ * </pre>
  */
 @Documented
 @Inherited
 @Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FormattedField {
+
 	@NotNull
 	String format();
-	
+
 	boolean straight() default true;
 }

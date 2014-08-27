@@ -45,19 +45,18 @@ import java.lang.annotation.Target;
 
 /**
  * Any field marked with this annotation will be shown as a <strong>OptionGroup</strong> component.<br>
- * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation.
+ * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation. Usage example: <br>
  * 
- * Usage example: <br>
- * <example>
+ * <pre>
  * class MyDomainClass {
  * 
- * 	  @ManyToOne
- *    @Field(prompt='', label='')
- *    @OptionGroup(fieldLabel='description')
+ * 	  &#064;ManyToOne
+ *    &#064;Field(prompt='', label='')
+ *    &#064;OptionGroup(fieldLabel='description')
  *    private AnotherDomainClass domainClass;
  *    
  * }
- * </example>
+ * </pre>
  */
 @Documented
 @Inherited
@@ -68,7 +67,7 @@ public @interface OptionGroup {
 	/**
 	 * Which field from domain class must be used as Label.
 	 * 
-	 * @return
+	 * @return field label
 	 */
 	String fieldLabel() default "";
 

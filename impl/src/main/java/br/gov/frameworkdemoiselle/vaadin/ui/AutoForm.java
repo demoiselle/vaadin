@@ -64,8 +64,8 @@ import com.vaadin.ui.FormFieldFactory;
  * Form's of this type are capable to produce fields using specific annotations.
  * 
  * @author Marlon
- *
- * @param <E> Bean's type to which this form belongs to.
+ * @param <E>
+ *            Bean's type to which this form belongs to.
  */
 public class AutoForm<E> extends BeanValidationForm<E> implements FormFieldFactory {
 
@@ -76,7 +76,8 @@ public class AutoForm<E> extends BeanValidationForm<E> implements FormFieldFacto
 	/**
 	 * Default constructor.
 	 * 
-	 * @param beanClass The bean's class.
+	 * @param beanClass
+	 *            The bean's class.
 	 */
 	public AutoForm(Class<E> beanClass) {
 		super(beanClass);
@@ -100,7 +101,7 @@ public class AutoForm<E> extends BeanValidationForm<E> implements FormFieldFacto
 		String prompt = "";
 
 		if (item instanceof BeanItem<?>) {
-			Class<E> clazz = (Class<E>)((BeanItem<E>) item).getBean().getClass();
+			Class<E> clazz = (Class<E>) ((BeanItem<E>) item).getBean().getClass();
 			java.lang.reflect.Field objectField = getField((String) propertyId, clazz);
 
 			if (objectField.isAnnotationPresent(br.gov.frameworkdemoiselle.vaadin.annotation.Field.class)) {
@@ -111,11 +112,11 @@ public class AutoForm<E> extends BeanValidationForm<E> implements FormFieldFacto
 				field = field == null ? findFieldByType(objectField, prompt, caption) : field;
 
 				if (field == null) {
-					//TODO Lançar um warning indicando o uso do campo de texto, pq não foi encontrado uma
+					// TODO Lançar um warning indicando o uso do campo de texto, pq não foi encontrado uma
 					// anotação, é não é um tipo primitivo tratado.
 					field = FieldFactory.createTextField(prompt, caption);
-					
-//					throw new RuntimeException("Can't get the field type.");
+
+					// throw new RuntimeException("Can't get the field type.");
 				}
 
 				fields.put((String) propertyId, field);
@@ -132,8 +133,10 @@ public class AutoForm<E> extends BeanValidationForm<E> implements FormFieldFacto
 	/**
 	 * Verifies if the field exists in the object. If exists, return it. If not, throws an exception.
 	 * 
-	 * @param propertyId Field to be found.
-	 * @param clazz Class
+	 * @param propertyId
+	 *            Field to be found.
+	 * @param clazz
+	 *            Class
 	 * @return Found field.
 	 */
 	private java.lang.reflect.Field getField(String propertyId, Class<?> clazz) {
@@ -143,7 +146,7 @@ public class AutoForm<E> extends BeanValidationForm<E> implements FormFieldFacto
 			throw new RuntimeException("AutomaticForm error: Can't access field " + propertyId + " in class "
 					+ clazz.getName(), e);
 		} catch (NoSuchFieldException e) {
-			if(clazz.getSuperclass() != null){
+			if (clazz.getSuperclass() != null) {
 				return getField(propertyId, clazz.getSuperclass());
 			}
 			throw new RuntimeException("AutomaticForm error: Can't find field " + propertyId + " in class "
@@ -154,9 +157,12 @@ public class AutoForm<E> extends BeanValidationForm<E> implements FormFieldFacto
 	/**
 	 * Attempts to deduce the field's type (Vaadin field) via the class of the attribute.
 	 * 
-	 * @param objectField Object which have the attribute
-	 * @param prompt Prompt
-	 * @param caption Caption
+	 * @param objectField
+	 *            Object which have the attribute
+	 * @param prompt
+	 *            Prompt
+	 * @param caption
+	 *            Caption
 	 * @return Deduced field or Null if not deduced.
 	 */
 	private Field findFieldByType(java.lang.reflect.Field objectField, String prompt, String caption) {
@@ -187,9 +193,12 @@ public class AutoForm<E> extends BeanValidationForm<E> implements FormFieldFacto
 	/**
 	 * Attempts to deduce the field's type (Vaadin field) via annotations.
 	 * 
-	 * @param objectField Object which have the field.
-	 * @param prompt Prompt.
-	 * @param caption Caption.
+	 * @param objectField
+	 *            Object which have the field.
+	 * @param prompt
+	 *            Prompt.
+	 * @param caption
+	 *            Caption.
 	 * @return Deduced Field.
 	 */
 	private Field findFieldByAnnotation(java.lang.reflect.Field objectField, String prompt, String caption) {
@@ -231,8 +240,8 @@ public class AutoForm<E> extends BeanValidationForm<E> implements FormFieldFacto
 	@Override
 	public void addField(Object propertyId, Field field) {
 		super.addField(propertyId, field);
-		if(propertyId instanceof String)
-			fields.put((String)propertyId, field);
+		if (propertyId instanceof String)
+			fields.put((String) propertyId, field);
 	}
-	
+
 }

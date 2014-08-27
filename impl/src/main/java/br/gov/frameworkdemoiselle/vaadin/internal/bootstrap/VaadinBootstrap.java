@@ -49,7 +49,7 @@ public class VaadinBootstrap implements Extension {
 	public void addContexts(@Observes final AfterDeploymentValidation event) {
 		ViewContext viewContext = Beans.getReference(ViewContext.class);
 		viewContext.activate();
-	}	
+	}
 
 	public void removeContexts(@Observes AfterShutdownProccess event) {
 		ViewContext viewContext = Beans.getReference(ViewContext.class);

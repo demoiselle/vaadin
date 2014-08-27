@@ -45,26 +45,24 @@ import javax.inject.Qualifier;
 
 /**
  * Event qualifier annotation.<br>
+ * When used in conjunction with ${link Observes} annotation from CDI, listen for events related to ${link View}'s
+ * initialization. Usage example:
  * 
- * When used in conjunction with ${link Observes} annotation from CDI, listen for events
- * related to ${link View}'s initialization.
+ * <pre>
  * 
- * Usage example:
- * 
- * <example>
  * class MyPresenterClass {
  * 
- *    public void myInterceptorMethod(@Observes @AfterViewInitialization MyView view) {
- *       // Catches events fired when MyView gets initialized.
- *    }
- *    
+ * 	public void myInterceptorMethod(@Observes @AfterViewInitialization MyView view) {
+ * 		// Catches events fired when MyView gets initialized.
+ * 	}
+ * 
  * }
- * </example>
+ * </pre>
  * 
  * @author CETEC
  */
 @Qualifier
-@Target({ElementType.PARAMETER, ElementType.FIELD})
+@Target({ ElementType.PARAMETER, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AfterViewInitialization {
 

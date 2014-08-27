@@ -48,8 +48,8 @@ import com.vaadin.data.Container;
 import com.vaadin.ui.Table;
 
 /**
- * Simple table component which extends ${com.vaadin.ui.Table} adding some specific behavior to
- * fire events when the user selects some line in the table.
+ * Simple table component which extends ${com.vaadin.ui.Table} adding some specific behavior to fire events when the
+ * user selects some line in the table.
  * 
  * @author CETEC
  */
@@ -58,14 +58,14 @@ public class AutoTable extends Table {
 	private static final long serialVersionUID = 1L;
 
 	private Class<?> beanClass;
-	
+
 	private String[] columnOrder = null;
-	
+
 	public AutoTable(Class<?> beanClass) {
 		super();
 
 		this.beanClass = beanClass;
-		
+
 		setImmediate(true);
 		setSelectable(true);
 
@@ -86,48 +86,45 @@ public class AutoTable extends Table {
 		});
 
 	}
-	
-	
+
 	/**
 	 * Adding the order behaviour
 	 */
 	@Override
-	public void setContainerDataSource(Container newDataSource) {		
+	public void setContainerDataSource(Container newDataSource) {
 		super.setContainerDataSource(newDataSource);
-		if(!newDataSource.getItemIds().isEmpty()) { 
-			if(columnOrder!=null && columnOrder.length>0) {
-				if(getVisibleColumns().length > 0)
+		if (!newDataSource.getItemIds().isEmpty()) {
+			if (columnOrder != null && columnOrder.length > 0) {
+				if (getVisibleColumns().length > 0)
 					setVisibleColumns(columnOrder);
 			}
 		}
 	}
-	
 
 	/**
-	 * If this is informed, always an setContainerDataSource is called the setVisibleColumns is
-	 * called with the colunOrder as parameter.
+	 * If this is informed, always an setContainerDataSource is called the setVisibleColumns is called with the
+	 * colunOrder as parameter.
 	 * 
 	 * @param properties
 	 */
 	public void setColumnOrder(String[] properties) {
 		this.columnOrder = properties;
 	}
-	
-	
+
 	@Override
-	public String getColumnHeader(Object propertyId) {		
+	public String getColumnHeader(Object propertyId) {
 		try {
 			Field field = beanClass.getDeclaredField((String) propertyId).getAnnotation(Field.class);
-			if(field!=null && !"".equals(field.label())){
+			if (field != null && !"".equals(field.label())) {
 				return resolveProperties(field.label());
-			}			
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 		
-		
+		}
+
 		return super.getColumnHeader(propertyId);
 	}
-	
+
 	private static String resolveProperties(final String message) {
 		ResourceBundle bundle = Beans.getReference(ResourceBundle.class);
 		String result = message;
@@ -136,5 +133,5 @@ public class AutoTable extends Table {
 		}
 		return result;
 	}
-	
+
 }

@@ -45,18 +45,17 @@ import java.lang.annotation.Target;
 
 /**
  * Any field marked with this annotation will be shown as a <strong>TextField</strong> component.<br>
- * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation.
+ * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation. Usage example: <br>
  * 
- * Usage example: <br>
- * <example>
+ * <pre>
  * class MyDomainClass {
  * 
- * 	  @CpfField
- * 	  @Field(prompt='', label='')
+ * 	  &#064;CpfField
+ * 	  &#064;Field(prompt='', label='')
  * 	  private AnotherDomainClass domainClass;
  *    
  * }
- * </example>
+ * </pre>
  */
 @Documented
 @Inherited

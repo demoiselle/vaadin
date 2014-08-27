@@ -41,13 +41,10 @@ import br.gov.frameworkdemoiselle.util.Beans;
 import com.github.wolfie.refresher.Refresher;
 
 /**
- * AsyncTask enables proper and easy use of the UI thread. 
- * This class allows to perform background operations and publish results on the UI thread without having to manipulate threads and/or handlers.
+ * AsyncTask enables proper and easy use of the UI thread. This class allows to perform background operations and
+ * publish results on the UI thread without having to manipulate threads and/or handlers.
  * 
  * @author CETEC
- *
- * @param <Params>
- * @param <Result>
  */
 public abstract class AsyncTask<Params, Result> extends Refresher {
 

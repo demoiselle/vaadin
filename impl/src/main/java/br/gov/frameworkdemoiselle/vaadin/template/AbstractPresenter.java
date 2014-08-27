@@ -45,8 +45,8 @@ import br.gov.frameworkdemoiselle.util.Reflections;
  * Base class for Presenters.
  * 
  * @author CETEC
- *
- * @param <V> View related to this Presenter.
+ * @param <V>
+ *            View related to this Presenter.
  */
 public abstract class AbstractPresenter<V extends BaseVaadinView> implements Presentable<V> {
 

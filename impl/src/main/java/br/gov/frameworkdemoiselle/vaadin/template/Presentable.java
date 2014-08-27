@@ -42,8 +42,8 @@ import java.io.Serializable;
  * Common behavior to all "Presenter" class.
  * 
  * @author CETEC
- *
- * @param <V> View class related to this Presenter.
+ * @param <V>
+ *            View class related to this Presenter.
  */
 public interface Presentable<V extends View> extends Serializable {
 

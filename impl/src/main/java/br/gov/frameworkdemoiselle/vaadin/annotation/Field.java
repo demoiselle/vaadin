@@ -46,9 +46,8 @@ import java.lang.annotation.Target;
 /**
  * Any field marked with this annotation will be treated as a visual component. <br>
  * Can be used in conjunction with other field annotations, like ${link TextField}, ${link ComboBox}, etc.<br>
- * 
  * If used alone, the field type will be used to infer which component will be shown.<br>
- * For example, ${link String} fields will be displayed as ${link TextField} by default.<br> 
+ * For example, ${link String} fields will be displayed as ${link TextField} by default.<br>
  * ${link Boolean} fields will be displayed as ${link CheckBox} by default.
  * 
  * @author CETEC
@@ -62,14 +61,14 @@ public @interface Field {
 	/**
 	 * Field label.
 	 * 
-	 * @return
+	 * @return field label
 	 */
 	String label() default "";
 
 	/**
 	 * Field prompt message.
 	 * 
-	 * @return
+	 * @return prompt message
 	 */
 	String prompt() default "";
 

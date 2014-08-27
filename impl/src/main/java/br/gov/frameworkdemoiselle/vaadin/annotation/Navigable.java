@@ -45,7 +45,7 @@ import java.lang.annotation.Target;
 
 /**
  * Used to mark a specific component as "navigable".<br>
- * Any navigable component will be used by ${link Navigator} to handle transitions between {$link View}s.<br> 
+ * Any navigable component will be used by ${link Navigator} to handle transitions between {$link View}s.<br>
  * 
  * @author CETEC
  */

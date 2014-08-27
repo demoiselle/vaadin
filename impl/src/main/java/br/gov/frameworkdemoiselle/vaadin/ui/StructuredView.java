@@ -59,7 +59,7 @@ public abstract class StructuredView extends BaseVaadinView {
 	private MenuBar menuBar;
 
 	private VerticalLayout content;
- 
+
 	@Override
 	public void init() {
 		footer = new VerticalLayout();
@@ -80,7 +80,7 @@ public abstract class StructuredView extends BaseVaadinView {
 		addComponent(menuBar);
 		addComponent(content);
 		addComponent(footer);
-		
+
 		super.init();
 	}
 

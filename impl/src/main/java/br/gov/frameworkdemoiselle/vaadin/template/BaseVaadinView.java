@@ -66,7 +66,8 @@ public abstract class BaseVaadinView extends VerticalLayout implements View {
 			@SuppressWarnings("serial")
 			@Override
 			public void repaintRequested(RepaintRequestEvent event) {
-				beanManager.fireEvent(BaseVaadinView.this, new AnnotationLiteral<AfterViewRepainted>() {});
+				beanManager.fireEvent(BaseVaadinView.this, new AnnotationLiteral<AfterViewRepainted>() {
+				});
 			}
 
 		});

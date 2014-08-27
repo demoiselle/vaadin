@@ -45,20 +45,18 @@ import javax.inject.Qualifier;
 
 /**
  * Event qualifier annotation.<br>
+ * When used in conjunction with ${link Observes} annotation from CDI, listen for events related to selection of some
+ * domain object that needs to be "edited". Usage example:
  * 
- * When used in conjunction with ${link Observes} annotation from CDI, listen for events
- * related to selection of some domain object that needs to be "edited".
+ * <pre>
  * 
- * Usage example:
- * 
- * <example>
  * class MyPresenterClass {
  * 
- *    public void myInterceptorMethod(@Observes @ProcessItemSelection MyDomainObject domainObject) {
- *    }
- *    
+ * 	public void myInterceptorMethod(@Observes @ProcessItemSelection MyDomainObject domainObject) {
+ * 	}
+ * 
  * }
- * </example>
+ * </pre>
  * 
  * @author CETEC
  */

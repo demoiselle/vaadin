@@ -263,7 +263,8 @@ final public class FieldFactory {
 			public void valueChange(com.vaadin.data.Property.ValueChangeEvent event) {
 				if (listenedField.getValue() != null) {
 					try {
-						listenedField.setValue(TextUtil.format(listenedField.getValue().toString(), "999.999.999-99", true));
+						listenedField.setValue(TextUtil.format(listenedField.getValue().toString(), "999.999.999-99",
+								true));
 					} catch (RuntimeException re) {
 						// Notthing to be done!
 					}
