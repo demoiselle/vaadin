@@ -40,7 +40,7 @@
 
 	<groupId>br.gov.frameworkdemoiselle.component</groupId>
 	<artifactId>demoiselle-vaadin</artifactId>
-	<version>2.4.0-SNAPSHOT</version>
+	<version>2.4.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<parent>
@@ -106,7 +106,7 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin</artifactId>
-			<version>6.7.1</version>
+			<version>6.8.14</version>
 		</dependency>
 		<dependency>
 			<groupId>org.vaadin.addons</groupId>
@@ -151,6 +151,6 @@
 	</repositories>
 
 	<properties>
-		<demoiselle.framework.version>2.4.0</demoiselle.framework.version>
+		<demoiselle.framework.version>2.4.1</demoiselle.framework.version>
 	</properties>
 </project>
