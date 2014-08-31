@@ -43,21 +43,14 @@ import com.vaadin.ui.TextField;
 
 /**
  * Helper class that provides basic Vaadin field creation.
- * 
+ *
  * @author Marlon
  */
-final public class FieldFactory {
-
-	/**
-	 * Can't instantiate this class. It's a helper class. All calls must be made only through static methods.
-	 */
-	private FieldFactory() {
-
-	}
+public abstract class FieldFactory {
 
 	/**
 	 * Produces basic textfields.
-	 * 
+	 *
 	 * @param inputPrompt
 	 *            Prompt message.
 	 * @param caption
@@ -82,7 +75,7 @@ final public class FieldFactory {
 
 	/**
 	 * Produces a RichText field.
-	 * 
+	 *
 	 * @param caption
 	 *            Field's caption.
 	 * @return Produced field.
@@ -96,7 +89,7 @@ final public class FieldFactory {
 
 	/**
 	 * Produces a TextArea field.
-	 * 
+	 *
 	 * @param inputPrompt
 	 *            Field's prompt message.
 	 * @param caption
@@ -127,7 +120,7 @@ final public class FieldFactory {
 
 	/**
 	 * Produces an OptionGroup.
-	 * 
+	 *
 	 * @param caption
 	 *            Field's caption.
 	 * @param itemCaptionPropertyId
@@ -143,7 +136,7 @@ final public class FieldFactory {
 
 	/**
 	 * Produces a ComboBox.
-	 * 
+	 *
 	 * @param inputPrompt
 	 *            Field's prompt message.
 	 * @param caption
@@ -170,7 +163,7 @@ final public class FieldFactory {
 
 	/**
 	 * Produces a PopupDateField.
-	 * 
+	 *
 	 * @param inputPrompt
 	 *            Field's prompt message.
 	 * @param caption
@@ -197,7 +190,7 @@ final public class FieldFactory {
 
 	/**
 	 * Produces a CheckBox.
-	 * 
+	 *
 	 * @param inputPrompt
 	 *            Field's prompt.
 	 * @param caption
@@ -238,6 +231,7 @@ final public class FieldFactory {
 
 			VaadinConfig config = Beans.getReference(VaadinConfig.class);
 
+			@Override
 			public File createFile(String fileName, String mimeType) {
 				File f = new File(config.getUploadPath() + fileName);
 				return f;
@@ -260,6 +254,7 @@ final public class FieldFactory {
 		listenedField.setImmediate(true);
 		listenedField.addListener(new ValueChangeListener() {
 
+			@Override
 			public void valueChange(com.vaadin.data.Property.ValueChangeEvent event) {
 				if (listenedField.getValue() != null) {
 					try {
@@ -301,6 +296,7 @@ final public class FieldFactory {
 		listenedField.setImmediate(true);
 		listenedField.addListener(new ValueChangeListener() {
 
+			@Override
 			public void valueChange(com.vaadin.data.Property.ValueChangeEvent event) {
 				if (listenedField.getValue() != null) {
 					try {
