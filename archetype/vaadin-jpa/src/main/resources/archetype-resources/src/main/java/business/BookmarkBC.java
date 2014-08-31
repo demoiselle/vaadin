@@ -23,7 +23,7 @@ public class BookmarkBC extends DelegateCrud<Bookmark, Long, BookmarkDAO> {
 	@Inject
 	private MessageContext messageContext;
 	
-	//@Startup
+	@Startup
 	@Transactional
 	public void load() {
 		Category categoryDemoiselle = new Category("Demoiselle"); 
