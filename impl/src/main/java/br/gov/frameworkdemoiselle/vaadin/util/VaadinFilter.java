@@ -26,30 +26,28 @@ public class VaadinFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
 			ServletException {
 
- 		chain.doFilter(request, response);
+		chain.doFilter(request, response);
 
-	    MessageContext messageContext = Beans.getReference(MessageContext.class);
-		
-//		for (Message message : messageContext.getMessages()) {
-//
-//			ViewNavigator navigator = Beans.getReference(ViewNavigator.class);
-//			if (navigator != null) {
-//				if (navigator.getNavigable() != null) {
-//					if (message.getSeverity() == SeverityType.WARN) {
-//						navigator.getNavigable().getApplication().getMainWindow()
-//								.showNotification("", message.getText(), Notification.TYPE_WARNING_MESSAGE);
-//					} else if (message.getSeverity() == SeverityType.ERROR) {
-//						navigator.getNavigable().getApplication().getMainWindow()
-//								.showNotification("", message.getText(), Notification.TYPE_ERROR_MESSAGE);
-//					} else if (message.getSeverity() == SeverityType.INFO) {
-//						navigator.getNavigable().getApplication().getMainWindow()
-//								.showNotification("", message.getText(), Notification.TYPE_HUMANIZED_MESSAGE);
-//					}
-//				}
-//			}
-//		}
+		MessageContext messageContext = Beans.getReference(MessageContext.class);
 
-		
+		// for (Message message : messageContext.getMessages()) {
+		//
+		// ViewNavigator navigator = Beans.getReference(ViewNavigator.class);
+		// if (navigator != null) {
+		// if (navigator.getNavigable() != null) {
+		// if (message.getSeverity() == SeverityType.WARN) {
+		// navigator.getNavigable().getApplication().getMainWindow()
+		// .showNotification("", message.getText(), Notification.TYPE_WARNING_MESSAGE);
+		// } else if (message.getSeverity() == SeverityType.ERROR) {
+		// navigator.getNavigable().getApplication().getMainWindow()
+		// .showNotification("", message.getText(), Notification.TYPE_ERROR_MESSAGE);
+		// } else if (message.getSeverity() == SeverityType.INFO) {
+		// navigator.getNavigable().getApplication().getMainWindow()
+		// .showNotification("", message.getText(), Notification.TYPE_HUMANIZED_MESSAGE);
+		// }
+		// }
+		// }
+		// }
 
 	}
 

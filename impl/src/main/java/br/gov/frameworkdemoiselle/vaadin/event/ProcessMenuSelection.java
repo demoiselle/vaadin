@@ -45,25 +45,23 @@ import javax.inject.Qualifier;
 
 /**
  * Event qualifier annotation.<br>
- * 
- * When used in conjunction with ${link Observes} annotation from CDI, listen for events
- * related to menu item selection.
- * 
+ * When used in conjunction with ${link Observes} annotation from CDI, listen for events related to menu item selection.
  * Usage example:
  * 
- * <example>
+ * <pre>
+ * 
  * class MyPresenterClass {
  * 
- *    public void myInterceptorMethod(@Observes @ProcessMenuSelection String selection) {
- *    }
- *    
+ * 	public void myInterceptorMethod(@Observes @ProcessMenuSelection String selection) {
+ * 	}
+ * 
  * }
- * </example>
+ * </pre>
  * 
  * @author CETEC
  */
 @Qualifier
-@Target({ElementType.PARAMETER, ElementType.FIELD})
+@Target({ ElementType.PARAMETER, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ProcessMenuSelection {
 

@@ -18,8 +18,6 @@
  */
 package br.gov.frameworkdemoiselle.vaadin.template;
 
-import java.io.Serializable;
-
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.InjectionTarget;
 import javax.servlet.http.HttpServletRequest;
@@ -32,11 +30,12 @@ import com.vaadin.terminal.gwt.server.HttpServletRequestListener;
 /**
  * Must be used as super class for all vaadin application. Used this class instead com.vaadin.Application. Responsible
  * to "wake up" Weld.
- * 
+ *
  * @author CETEC
  */
-@SuppressWarnings("serial")
-public abstract class VaadinApplication extends Application implements Serializable, HttpServletRequestListener {
+public abstract class VaadinApplication extends Application implements HttpServletRequestListener {
+
+	private static final long serialVersionUID = -7419549944336074605L;
 
 	private InjectionTarget<VaadinApplication> injectionTarget;
 
@@ -52,8 +51,9 @@ public abstract class VaadinApplication extends Application implements Serializa
 
 	@Override
 	public void onRequestStart(HttpServletRequest request, HttpServletResponse response) {
-		if (currentApplication.get() == null)
+		if (currentApplication.get() == null) {
 			currentApplication.set(this);
+		}
 	}
 
 	@Override
@@ -96,12 +96,12 @@ public abstract class VaadinApplication extends Application implements Serializa
 
 	@Override
 	public void terminalError(Terminal.ErrorEvent event) {
-		if (getCallDefaultTerminalErrorImpl())
+		if (getCallDefaultTerminalErrorImpl()) {
 			super.terminalError(event);
+		}
 	}
-	
+
 	public void reloadApp() {
 		getMainWindow().executeJavaScript("window.location.href=window.location.href;");
 	}
-
 }

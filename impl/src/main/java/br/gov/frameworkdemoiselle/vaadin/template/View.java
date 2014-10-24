@@ -38,7 +38,7 @@ package br.gov.frameworkdemoiselle.vaadin.template;
 
 /**
  * Defines common behavior to all views.
- *  
+ * 
  * @author CETEC
  */
 public interface View {

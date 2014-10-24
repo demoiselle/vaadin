@@ -45,18 +45,17 @@ import java.lang.annotation.Target;
 
 /**
  * Any field marked with this annotation will be shown as a <strong>TextField</strong> component.<br>
- * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation.
+ * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation. Usage example: <br>
  * 
- * Usage example: <br>
- * <example>
+ * <pre>
  * class MyDomainClass {
  * 
- *    @Field(prompt='', label='')
- *    @TextField
+ *    &#064;Field(prompt='', label='')
+ *    &#064;TextField
  *    private String description;
  *    
  * }
- * </example>
+ * </pre>
  * 
  * @author CETEC
  */
@@ -68,16 +67,16 @@ public @interface TextField {
 
 	/**
 	 * If the field's value is null, how it must be displayed? <br>
-	 *  Default is as a empty string.
-	 *  
-	 * @return
+	 * Default is as a empty string.
+	 * 
+	 * @return null as
 	 */
 	String nullAs() default "";
 
 	/**
 	 * The field's value must be shown with a mask? <br>
 	 * 
-	 * @return
+	 * @return field mask
 	 */
 	String mask() default "";
 

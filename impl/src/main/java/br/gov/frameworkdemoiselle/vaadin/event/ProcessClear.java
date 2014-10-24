@@ -45,26 +45,24 @@ import javax.inject.Qualifier;
 
 /**
  * Event qualifier annotation.<br>
- * 
- * When used in conjunction with ${link Observes} annotation from CDI, listen for events
- * related to clearing CRUD forms.
- * 
+ * When used in conjunction with ${link Observes} annotation from CDI, listen for events related to clearing CRUD forms.
  * Usage example:
  * 
- * <example>
+ * <pre>
+ * 
  * class MyPresenterClass {
  * 
- *    public void myInterceptorMethod(@Observes @ProcessClear MyDomainObject domainObject) {
- *       // Catches events fired when a user form needs to have your elements cleared.
- *    }
- *    
+ * 	public void myInterceptorMethod(@Observes @ProcessClear MyDomainObject domainObject) {
+ * 		// Catches events fired when a user form needs to have your elements cleared.
+ * 	}
+ * 
  * }
- * </example>
+ * </pre>
  * 
  * @author CETEC
  */
 @Qualifier
-@Target({ElementType.PARAMETER, ElementType.FIELD})
+@Target({ ElementType.PARAMETER, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ProcessClear {
 

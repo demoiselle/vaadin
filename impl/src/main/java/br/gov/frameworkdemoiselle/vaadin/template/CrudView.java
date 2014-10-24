@@ -38,7 +38,6 @@ package br.gov.frameworkdemoiselle.vaadin.template;
 
 import java.util.List;
 
-
 /**
  * Extends View interface adding behavior related to CRUD operations.
  * 
@@ -56,7 +55,8 @@ public interface CrudView<Bean> extends View {
 	/**
 	 * Set the bean which will receive CRUD operations.
 	 * 
-	 * @param bean Bean.
+	 * @param bean
+	 *            Bean.
 	 */
 	void setBean(Bean bean);
 
@@ -68,7 +68,8 @@ public interface CrudView<Bean> extends View {
 	/**
 	 * Set the list of beans.
 	 * 
-	 * @param list List.
+	 * @param list
+	 *            List.
 	 */
 	void setList(List<Bean> list);
 

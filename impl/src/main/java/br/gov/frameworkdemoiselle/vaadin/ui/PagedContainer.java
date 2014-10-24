@@ -50,7 +50,7 @@ import com.vaadin.data.Container;
  */
 public class PagedContainer {
 
-//	private static final long serialVersionUID = 1L;
+	// private static final long serialVersionUID = 1L;
 
 	public static <T> Container create(Class<T> beanClass, ResultListHandler<T> handler) {
 		GenericBeanFactory<T> queryFactory = new GenericBeanFactory<T>(beanClass, handler);

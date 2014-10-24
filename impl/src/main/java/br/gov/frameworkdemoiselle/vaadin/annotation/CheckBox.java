@@ -45,18 +45,17 @@ import java.lang.annotation.Target;
 
 /**
  * Any field marked with this annotation will be shown as a <strong>CheckBox</strong> component.<br>
- * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation.
+ * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation. Usage example: <br>
  * 
- * Usage example: <br>
- * <example>
+ * <pre>
  * class MyDomainClass {
  * 
- *    @Field(prompt='', label='')
- *    @CheckBox
+ *    &#064;Field(prompt='', label='')
+ *    &#064;CheckBox
  *    private boolean isActive;
  *    
  * }
- * </example>
+ * </pre>
  */
 @Documented
 @Inherited

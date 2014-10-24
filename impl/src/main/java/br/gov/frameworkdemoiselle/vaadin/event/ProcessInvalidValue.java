@@ -45,26 +45,24 @@ import javax.inject.Qualifier;
 
 /**
  * Event qualifier annotation.<br>
- * 
- * When used in conjunction with ${link Observes} annotation from CDI, listen for events
- * related to validation errors.
- * 
+ * When used in conjunction with ${link Observes} annotation from CDI, listen for events related to validation errors.
  * Usage example:
  * 
- * <example>
+ * <pre>
+ * 
  * class MyPresenterClass {
  * 
- *    public void myInterceptorMethod(@Observes @ProcessInvalidValue MyDomainObject domainObject) {
- *       // Catches events fired when a user inform some invalid value in a form.
- *    }
- *    
+ * 	public void myInterceptorMethod(@Observes @ProcessInvalidValue MyDomainObject domainObject) {
+ * 		// Catches events fired when a user inform some invalid value in a form.
+ * 	}
+ * 
  * }
- * </example>
+ * </pre>
  * 
  * @author CETEC
  */
 @Qualifier
-@Target({ElementType.PARAMETER, ElementType.FIELD})
+@Target({ ElementType.PARAMETER, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ProcessInvalidValue {
 

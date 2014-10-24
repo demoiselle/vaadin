@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import javax.inject.Qualifier;
 
 @Qualifier
-@Target({ElementType.PARAMETER, ElementType.FIELD})
+@Target({ ElementType.PARAMETER, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AfterViewRepainted {
 

@@ -68,7 +68,7 @@ public class VaadinApplicationServlet extends ApplicationServlet {
 	@SuppressWarnings({ "unchecked" })
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		
+
 		if (beanManager == null) {
 			beanManager = (BeanManager) getServletContext().getAttribute(BeanManager.class.getName());
 		}

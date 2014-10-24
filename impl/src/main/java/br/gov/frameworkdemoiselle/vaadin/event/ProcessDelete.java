@@ -45,26 +45,24 @@ import javax.inject.Qualifier;
 
 /**
  * Event qualifier annotation.<br>
+ * When used in conjunction with ${link Observes} annotation from CDI, listen for events related to deleting domain
+ * objects. Usage example:
  * 
- * When used in conjunction with ${link Observes} annotation from CDI, listen for events
- * related to deleting domain objects.
+ * <pre>
  * 
- * Usage example:
- * 
- * <example>
  * class MyPresenterClass {
  * 
- *    public void myInterceptorMethod(@Observes @ProcessDelete MyDomainObject domainObject) {
- *       // Catches events fired when a user wants to delete some domain object.
- *    }
- *    
+ * 	public void myInterceptorMethod(@Observes @ProcessDelete MyDomainObject domainObject) {
+ * 		// Catches events fired when a user wants to delete some domain object.
+ * 	}
+ * 
  * }
- * </example>
+ * </pre>
  * 
  * @author CETEC
  */
 @Qualifier
-@Target({ElementType.PARAMETER, ElementType.FIELD})
+@Target({ ElementType.PARAMETER, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ProcessDelete {
 

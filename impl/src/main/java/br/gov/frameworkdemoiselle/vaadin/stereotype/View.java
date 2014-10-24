@@ -47,7 +47,7 @@ import java.lang.annotation.Target;
 import javax.enterprise.inject.Stereotype;
 
 /**
- * Stereotype used to qualify classes that act as View (MVP Pattern). 
+ * Stereotype used to qualify classes that act as View (MVP Pattern).
  * 
  * @author CETEC
  */

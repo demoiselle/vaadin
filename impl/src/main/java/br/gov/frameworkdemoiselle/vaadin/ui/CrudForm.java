@@ -59,8 +59,6 @@ import com.vaadin.ui.Window.Notification;
  * Abstract Form that implements basic functionality to crud operations.
  * 
  * @author We all!
- *
- * @param <E>
  */
 @SuppressWarnings("all")
 public class CrudForm<E> extends AutoForm<E> {
@@ -124,7 +122,8 @@ public class CrudForm<E> extends AutoForm<E> {
 					getWindow().showNotification(exception.getMessage(), Notification.TYPE_WARNING_MESSAGE);
 					return;
 				}
-				beanManager.fireEvent(getBean(), new AnnotationLiteral<ProcessSave>() {});
+				beanManager.fireEvent(getBean(), new AnnotationLiteral<ProcessSave>() {
+				});
 			}
 
 		});

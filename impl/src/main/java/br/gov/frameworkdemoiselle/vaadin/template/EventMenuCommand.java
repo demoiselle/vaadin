@@ -45,11 +45,9 @@ import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
 
 /**
- * Utility Command.
- * Fire ProcessMenuSelection events.
+ * Utility Command. Fire ProcessMenuSelection events.
  * 
  * @author CETEC
- *
  */
 public class EventMenuCommand implements Command {
 
@@ -58,6 +56,7 @@ public class EventMenuCommand implements Command {
 	@Override
 	public void menuSelected(MenuItem selectedItem) {
 		Beans.getBeanManager().fireEvent(selectedItem.getText(), new AnnotationLiteral<ProcessMenuSelection>() {
+
 			private static final long serialVersionUID = 1L;
 		});
 

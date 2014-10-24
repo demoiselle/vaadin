@@ -44,14 +44,10 @@ import org.vaadin.addons.lazyquerycontainer.QueryFactory;
 
 import br.gov.frameworkdemoiselle.util.Reflections;
 
-
- /**
- * Factory of ${link Query} implementations. 
- * Used by LazyContainer.
+/**
+ * Factory of ${link Query} implementations. Used by LazyContainer.
  * 
  * @author CETEC
- *
- * @param <E>
  */
 public class GenericBeanFactory<E> implements QueryFactory {
 

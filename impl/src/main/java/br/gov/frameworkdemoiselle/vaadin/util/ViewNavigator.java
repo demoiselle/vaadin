@@ -65,7 +65,6 @@ import com.vaadin.ui.TabSheet.Tab;
  * Utility class responsible to manage screen navigation.
  * 
  * @author CETEC
- *
  */
 @SessionScoped
 public class ViewNavigator implements Serializable {
@@ -88,7 +87,8 @@ public class ViewNavigator implements Serializable {
 	/**
 	 * Navigate from current view to a new ${link View}.
 	 * 
-	 * @param component ${link View} to be shown into Navigable.
+	 * @param component
+	 *            ${link View} to be shown into Navigable.
 	 */
 	public void navigate(BaseVaadinView component) {
 		if (navigable == null) {
@@ -100,7 +100,8 @@ public class ViewNavigator implements Serializable {
 	/**
 	 * Navigate from current view to a new ${link View}.
 	 * 
-	 * @param presenter Presenter which have the view.
+	 * @param presenter
+	 *            Presenter which have the view.
 	 */
 	public void navigate(Presentable<?> presenter) {
 		navigate((BaseVaadinView) presenter.getView());

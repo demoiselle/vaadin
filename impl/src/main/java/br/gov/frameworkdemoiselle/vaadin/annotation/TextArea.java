@@ -45,18 +45,17 @@ import java.lang.annotation.Target;
 
 /**
  * Any field marked with this annotation will be shown as a <strong>TextArea</strong> component.<br>
- * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation.
+ * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation. Usage example: <br>
  * 
- * Usage example: <br>
- * <example>
+ * <pre>
  * class MyDomainClass {
  * 
- *    @Field(prompt='', label='')
- *    @TextArea
+ *    &#064;Field(prompt='', label='')
+ *    &#064;TextArea
  *    private String description;
  *    
  * }
- * </example>
+ * </pre>
  */
 @Documented
 @Inherited
@@ -67,14 +66,14 @@ public @interface TextArea {
 	/**
 	 * Number of rows to be displayed.
 	 * 
-	 * @return
+	 * @return number of rows
 	 */
 	int rows() default 0;
 
 	/**
 	 * Number of columns to be displayed.
 	 * 
-	 * @return
+	 * @return number of columns
 	 */
 	int columns() default 0;
 

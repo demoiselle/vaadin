@@ -45,18 +45,17 @@ import java.lang.annotation.Target;
 
 /**
  * Any field marked with this annotation will be shown as a <strong>TextField</strong> component.<br>
- * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation.
+ * Has no effect if used alone. Must be used in conjunction with ${link Field} annotation. Usage example: <br>
  * 
- * Usage example: <br>
- * <example>
+ * <pre>
  * class MyDomainClass {
  * 
- *    @Field(prompt='', label='')
- *    @TextField
+ *    &#064;Field(prompt='', label='')
+ *    &#064;TextField
  *    private String description;
  *    
  * }
- * </example>
+ * </pre>
  * 
  * @author CETEC
  */
@@ -65,6 +64,5 @@ import java.lang.annotation.Target;
 @Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PasswordField {
-
 
 }

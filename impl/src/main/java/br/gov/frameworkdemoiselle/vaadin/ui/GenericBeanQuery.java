@@ -49,11 +49,7 @@ import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
 
 /**
- * 
- * 
  * @author CETEC
- *
- * @param <E>
  */
 public class GenericBeanQuery<E> implements Query {
 
@@ -120,10 +116,9 @@ public class GenericBeanQuery<E> implements Query {
 	}
 
 	/**
-	 * Vaadin's ${link Table} will call this method first.
-	 *  
-	 * Demoiselle's pagination mechanism needs a first call to "findAll" method to know how much records exists in the underlying persistence storage. 
-	 * Because that, we first check the size, asking only for one record (0 to 1). After that the "PageSize" attribute will be set.
+	 * Vaadin's ${link Table} will call this method first. Demoiselle's pagination mechanism needs a first call to
+	 * "findAll" method to know how much records exists in the underlying persistence storage. Because that, we first
+	 * check the size, asking only for one record (0 to 1). After that the "PageSize" attribute will be set.
 	 */
 	@Override
 	public int size() {
